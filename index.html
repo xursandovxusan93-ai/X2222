@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111827">
+<title>Школьный мир — учись интересно</title>
+<style>
+:root{--bg:#0b1020;--panel:#131b31;--panel2:#192440;--text:#eef3ff;--muted:#9ba9c7;--line:#293653;--a:#7c8cff;--b:#36d6c2;--pink:#f18acb;--yellow:#ffd166}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0%,#202b57 0,transparent 34%),radial-gradient(circle at 100% 20%,#173d4c 0,transparent 28%),var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial}
+button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1160px;margin:auto;padding:22px}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px}.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;font-size:23px;box-shadow:0 8px 30px #6477ff44}
+nav{display:flex;gap:7px;flex-wrap:wrap}nav button,.ghost{border:1px solid var(--line);background:#ffffff08;color:var(--muted);padding:9px 13px;border-radius:12px}nav button.active,nav button:hover,.ghost:hover{background:#7c8cff22;color:white;border-color:#7184ff}
+.hero{display:grid;grid-template-columns:1.5fr 1fr;gap:20px;align-items:stretch;margin-bottom:22px}.hero-main,.hero-side,.panel,.subject,.stat{background:linear-gradient(145deg,#182440ee,#111a2fee);border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 45px #0002}
+.hero-main{padding:30px;position:relative;overflow:hidden}.hero-main:after{content:"✦";position:absolute;right:30px;top:10px;font-size:120px;color:#ffffff0c}.eyebrow{color:var(--b);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:11px}.hero h1{font-size:clamp(30px,5vw,48px);line-height:1.08;margin:12px 0}.hero p{color:var(--muted);max-width:590px}.hero-side{padding:22px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(145deg,#27345d,#18283d)}.hero-side strong{font-size:34px}.progress{height:9px;background:#ffffff18;border-radius:20px;overflow:hidden;margin:10px 0}.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--a),var(--b));width:0}
+.searchbar{display:flex;gap:10px;margin:20px 0}.searchbar input{width:100%;background:#10182b;border:1px solid var(--line);color:white;border-radius:14px;padding:14px 16px;outline:none}.searchbar input:focus{border-color:var(--a)}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:28px 0 14px}.section-head h2{margin:0;font-size:23px}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.subject{padding:18px;cursor:pointer;transition:.2s;position:relative;overflow:hidden}.subject:hover{transform:translateY(-4px);border-color:#7184ff}.subject .emoji{font-size:30px}.subject h3{margin:9px 0 3px}.subject p{color:var(--muted);margin:0;font-size:13px}.tag{display:inline-block;margin-top:13px;color:#cbd4ff;background:#7c8cff20;border:1px solid #7c8cff35;border-radius:30px;padding:4px 9px;font-size:11px}
+.panel{padding:22px;margin-top:18px}.hidden{display:none!important}.content-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.note{padding:16px;border-radius:16px;background:#ffffff08;border:1px solid var(--line);margin:10px 0}.note h3{margin:0 0 6px}.formula{font-family:ui-monospace,monospace;color:#a8f5e8;background:#081c28;padding:10px 12px;border-radius:10px;display:block;margin-top:8px;overflow:auto}
+.action{background:linear-gradient(120deg,#7184ff,#5969dc);border:0;color:white;border-radius:12px;padding:10px 15px;font-weight:700}.action:hover{filter:brightness(1.1)}.option{display:block;width:100%;text-align:left;padding:12px;margin:8px 0;border:1px solid var(--line);background:#ffffff08;color:var(--text);border-radius:12px}.option:hover{border-color:var(--a);background:#7c8cff18}.option.correct{border-color:var(--b);background:#36d6c21c}.option.wrong{border-color:#ff7777;background:#ff77771c}
+.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{padding:17px}.stat strong{font-size:27px;display:block}.fact{font-size:18px;color:#e8edff}.footer{text-align:center;color:var(--muted);padding:35px 10px;font-size:12px}
+select{background:#10182b;color:white;border:1px solid var(--line);padding:10px;border-radius:10px}
+@media(max-width:760px){.wrap{padding:15px}.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.content-grid{grid-template-columns:1fr}header{align-items:flex-start;flex-direction:column}.statgrid{grid-template-columns:repeat(3,1fr)}nav button{padding:8px 10px;font-size:13px}}
+@media(max-width:430px){.grid{grid-template-columns:1fr}.hero-main{padding:22px}.stat{padding:12px}.stat strong{font-size:22px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <div class="brand"><div class="logo">✦</div><span>Школьный мир</span></div>
+ <nav>
+  <button class="active" data-page="home">Главная</button><button data-page="subjects">Предметы</button><button data-page="notes">Конспекты</button><button data-page="quiz">Тесты</button><button data-page="progress">Мои успехи</button>
+ </nav>
+</header>
+<main id="home" class="page">
+ <section class="hero">
+  <div class="hero-main"><div class="eyebrow">Учись • открывай • достигай</div><h1>Знания — твоя<br><span style="color:var(--b)">суперсила.</span></h1><p>Изучай школьные предметы, повторяй формулы, проверяй себя в тестах и собирай достижения. Всё в одном месте!</p><button class="action" onclick="showPage('subjects')">Начать обучение →</button></div>
+  <div class="hero-side"><div class="eyebrow">Твой учебный прогресс</div><strong id="heroScore">0 баллов</strong><div class="progress"><span id="heroBar"></span></div><div class="muted" id="heroCaption">Пройди тест, чтобы заработать первые баллы.</div></div>
+ </section>
+ <div class="statgrid">
+  <div class="stat"><span class="muted">Предметы</span><strong>8</strong><span class="muted">для изучения</span></div>
+  <div class="stat"><span class="muted">Вопросы</span><strong>5</strong><span class="muted">в мини-викторине</span></div>
+  <div class="stat"><span class="muted">Достижения</span><strong id="badgeCount">0</strong><span class="muted">уже открыто</span></div>
+ </div>
+ <div class="section-head"><div><div class="eyebrow">Выбери направление</div><h2>Популярные предметы</h2></div><button class="ghost" onclick="showPage('subjects')">Все предметы →</button></div>
+ <div class="grid" id="homeSubjects"></div>
+</main>
+<section id="subjects" class="page hidden">
+ <div class="section-head"><div><div class="eyebrow">Твоя учебная библиотека</div><h2>Школьные предметы</h2><div class="muted">Выбери предмет, чтобы открыть краткое описание и материалы.</div></div></div>
+ <div class="searchbar"><input id="search" placeholder="🔎 Найти предмет..." oninput="renderSubjects(this.value)"></div><div class="grid" id="subjectGrid"></div>
+ <div id="subjectDetail" class="panel hidden"></div>
+</section>
+<section id="notes" class="page hidden">
+ <div class="section-head"><div><div class="eyebrow">Коротко и понятно</div><h2>Конспекты и формулы</h2><div class="muted">Материалы для быстрого повторения.</div></div></div>
+ <div class="content-grid">
+  <div class="panel"><h3>📐 Математика</h3><div class="note">Площадь прямоугольника <span class="formula">S = a × b</span></div><div class="note">Теорема Пифагора <span class="formula">a² + b² = c²</span></div><div class="note">Квадратное уравнение <span class="formula">D = b² − 4ac</span><span class="formula">x = (−b ± √D) / 2a</span></div></div>
+  <div class="panel"><h3>⚡ Физика</h3><div class="note">Скорость равномерного движения <span class="formula">v = s / t</span></div><div class="note">Плотность вещества <span class="formula">ρ = m / V</span></div><div class="note">Закон Ома <span class="formula">I = U / R</span></div></div>
+  <div class="panel"><h3>🧪 Химия</h3><div class="note">Вода <span class="formula">H₂O</span></div><div class="note">Углекислый газ <span class="formula">CO₂</span></div><div class="note">Поваренная соль <span class="formula">NaCl</span></div></div>
+  <div class="panel"><h3>🌍 География</h3><div class="note">Масштаб карты <span class="formula">М = расстояние на карте / расстояние на местности</span></div><div class="note">Планета Земля имеет форму геоида — близкую к сплюснутому шару.</div></div>
+ </div>
+</section>
+<section id="quiz" class="page hidden">
+ <div class="section-head"><div><div class="eyebrow">Проверь свои знания</div><h2>Мини-викторина</h2><div class="muted">5 вопросов из разных школьных предметов.</div></div><button class="ghost" onclick="restartQuiz()">Начать заново</button></div>
+ <div class="panel" id="quizBox"><div class="muted" id="quizCount">Вопрос 1 из 5</div><div class="progress"><span id="quizBar"></span></div><h3 id="question"></h3><div id="options"></div><div id="feedback" class="muted"></div><button id="nextBtn" class="action hidden" onclick="nextQuestion()">Следующий вопрос →</button></div>
+</section>
+<section id="progress" class="page hidden">
+ <div class="section-head"><div><div class="eyebrow">Твои результаты</div><h2>Мои успехи</h2><div class="muted">Баллы и достижения сохраняются на этом устройстве.</div></div></div>
+ <div class="statgrid"><div class="stat"><span class="muted">Баллы</span><strong id="score">0</strong></div><div class="stat"><span class="muted">Правильные ответы</span><strong id="correctTotal">0</strong></div><div class="stat"><span class="muted">Пройдено тестов</span><strong id="testsDone">0</strong></div></div>
+ <div class="panel"><h3>🏆 Достижения</h3><div id="achievements" class="content-grid"></div></div>
+ <div class="panel"><h3>💡 Совет</h3><p class="muted">Занимайся понемногу каждый день: повторяй конспекты, решай задания и возвращайся к вопросам, в которых ошибся.</p></div>
+</section>
+<div class="footer">Школьный мир · Учиться интересно каждый день ✦<br>Учебные материалы предназначены для повторения. Проверяй требования своего учебника.</div>
+</main>
+<script>
+const subjects=[
+ {name:"Математика",icon:"📐",desc:"Числа, выражения, уравнения, геометрия и логика.",topic:"Формулы и решение задач",fact:"Число π используется для вычисления длины окружности и площади круга.",notes:["Сначала внимательно прочитай условие задачи.","Запиши известные величины и то, что нужно найти.","Проверь ответ подстановкой."]},
+ {name:"Физика",icon:"⚡",desc:"Изучай движение, силы, энергию, свет и электричество.",topic:"Законы природы",fact:"Свет в вакууме движется со скоростью примерно 300 000 км/с.",notes:["Скорость: v = s / t","Плотность: ρ = m / V","Сила тяжести у поверхности Земли: F = mg"]},
+ {name:"Химия",icon:"🧪",desc:"Вещества, элементы, реакции и строение атома.",topic:"Вещества и реакции",fact:"Вода состоит из молекул, каждая из которых содержит два атома водорода и один атом кислорода.",notes:["Воду обозначают H₂O.","Кислород — химический элемент O.","В химической реакции атомы не исчезают, а перегруппировываются."]},
+ {name:"Биология",icon:"🧬",desc:"Клетки, растения, животные и организм человека.",topic:"Живая природа",fact:"Некоторые растения способны поворачивать листья и цветки вслед за движением солнца.",notes:["Клетка — основная структурная единица живых организмов.","Фотосинтез помогает растениям создавать органические вещества.","ДНК хранит наследственную информацию."]},
+ {name:"История",icon:"🏛️",desc:"Цивилизации, государства, события и выдающиеся личности.",topic:"Прошлое человечества",fact:"Бумага получила широкое распространение в Китае задолго до появления книгопечатания в Европе.",notes:["Располагая события по времени, составь хронологию.","Отличай причину события от его последствий.","Сравнивай разные исторические источники."]},
+ {name:"География",icon:"🌍",desc:"Материки, океаны, страны, климат и карты.",topic:"Планета Земля",fact:"Тихий океан — самый большой океан Земли.",notes:["Экватор делит Землю на Северное и Южное полушария.","Масштаб показывает, во сколько раз расстояние на карте уменьшено.","Климат — многолетний режим погоды местности."]},
+ {name:"Информатика",icon:"💻",desc:"Компьютеры, алгоритмы, данные и программирование.",topic:"Цифровой мир",fact:"Первый веб-сайт был опубликован в 1991 году.",notes:["Алгоритм — точная последовательность действий.","HTML задаёт структуру веб-страницы.","CSS отвечает за внешний вид страницы."]},
+ {name:"Литература",icon:"📚",desc:"Книги, авторы, жанры и анализ произведений.",topic:"Чтение и творчество",fact:"Чтение художественной литературы помогает знакомиться с разными точками зрения и эпохами.",notes:["Тема — о чём произведение.","Идея — главная мысль произведения.","Характер героя раскрывается через поступки, речь и отношения."]}
+];
+const $=id=>document.getElementById(id);
+function showPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.add("hidden"));$(id).classList.remove("hidden");document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));window.scrollTo({top:0,behavior:"smooth"});if(id==="progress")updateProgress()}
+document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+function card(s){return `<article class="subject" onclick="openSubject('${s.name}')"><div class="emoji">${s.icon}</div><h3>${s.name}</h3><p>${s.desc}</p><span class="tag">Открыть материалы →</span></article>`}
+function renderSubjects(q=""){const list=subjects.filter(s=>(s.name+" "+s.desc).toLowerCase().includes(q.toLowerCase()));$("subjectGrid").innerHTML=list.length?list.map(card).join(""):'<p class="muted">Ничего не найдено. Попробуй другое название.</p>'}
+function openSubject(name){const s=subjects.find(x=>x.name===name);$("subjectDetail").classList.remove("hidden");$("subjectDetail").innerHTML=`<div class="eyebrow">${s.topic}</div><h2>${s.icon} ${s.name}</h2><p class="muted">${s.desc}</p><div class="note"><h3>📝 Краткий конспект</h3>${s.notes.map(n=>`<p>• ${n}</p>`).join("")}</div><div class="note"><h3>✨ Интересный факт</h3><p>${s.fact}</p></div><button class="ghost" onclick="document.getElementById('subjectDetail').classList.add('hidden')">Закрыть</button>`;$("subjectDetail").scrollIntoView({behavior:"smooth",block:"start"})}
+$("homeSubjects").innerHTML=subjects.slice(0,6).map(card).join("");renderSubjects();
+const questions=[
+ {q:"Чему равно 8 × 7?",o:["54","56","64","48"],a:1,why:"8 × 7 = 56."},
+ {q:"Какой газ необходим человеку для дыхания?",o:["Азот","Углекислый газ","Кислород","Гелий"],a:2,why:"Кислород используется клетками организма в процессе клеточного дыхания."},
+ {q:"Как называется прибор для измерения температуры?",o:["Барометр","Термометр","Компас","Линейка"],a:1,why:"Температуру измеряют термометром."},
+ {q:"Сколько материков обычно выделяют в школьной географии?",o:["4","5","6","7"],a:2,why:"В распространённой школьной модели выделяют шесть материков."},
+ {q:"Какой тег HTML задаёт основной заголовок первого уровня?",o:["<p>","<h1>","<img>","<br>"],a:1,why:"Тег <h1> используется для заголовка первого уровня."}
+];
+let qi=0,answered=false,runCorrect=0;
+function renderQuestion(){answered=false;let q=questions[qi];$("quizCount").textContent=`Вопрос ${qi+1} из ${questions.length}`;$("quizBar").style.width=(qi/questions.length*100)+"%";$("question").textContent=q.q;$("feedback").textContent="";$("nextBtn").classList.add("hidden");$("options").innerHTML=q.o.map((x,i)=>`<button class="option" onclick="answer(${i})">${String.fromCharCode(65+i)}. ${escapeHtml(x)}</button>`).join("")}
+function escapeHtml(s){return s.replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")}
+function answer(i){if(answered)return;answered=true;let q=questions[qi],buttons=[...$("options").children];buttons[q.a].classList.add("correct");if(i===q.a){runCorrect++;$("feedback").textContent="Верно! "+q.why}else{buttons[i].classList.add("wrong");$("feedback").textContent="Пока неверно. "+q.why}buttons.forEach(b=>b.disabled=true);$("nextBtn").textContent=qi===questions.length-1?"Завершить тест":"Следующий вопрос →";$("nextBtn").classList.remove("hidden")}
+function nextQuestion(){if(qi<questions.length-1){qi++;renderQuestion()}else{let old=Number(localStorage.getItem("swScore")||0);localStorage.setItem("swScore",old+runCorrect*10);localStorage.setItem("swCorrect",Number(localStorage.getItem("swCorrect")||0)+runCorrect);localStorage.setItem("swTests",Number(localStorage.getItem("swTests")||0)+1);localStorage.setItem("swBest",Math.max(Number(localStorage.getItem("swBest")||0),runCorrect));$("quizBox").innerHTML=`<div class="eyebrow">Тест завершён</div><h2>Ты молодец!</h2><p>Правильных ответов: <b>${runCorrect} из ${questions.length}</b></p><p class="muted">Ты заработал(а) ${runCorrect*10} баллов.</p><button class="action" onclick="restartQuiz()">Пройти ещё раз</button> <button class="ghost" onclick="showPage('progress')">Мои успехи</button>`;updateProgress()}}
+function restartQuiz(){qi=0;runCorrect=0;$("quizBox").innerHTML='<div class="muted" id="quizCount"></div><div class="progress"><span id="quizBar"></span></div><h3 id="question"></h3><div id="options"></div><div id="feedback" class="muted"></div><button id="nextBtn" class="action hidden" onclick="nextQuestion"></button>'; $("nextBtn").onclick=nextQuestion;renderQuestion()}
+function updateProgress(){let score=Number(localStorage.getItem("swScore")||0),correct=Number(localStorage.getItem("swCorrect")||0),tests=Number(localStorage.getItem("swTests")||0),best=Number(localStorage.getItem("swBest")||0);$("score").textContent=score;$("correctTotal").textContent=correct;$("testsDone").textContent=tests;$("heroScore").textContent=score+" баллов";$("heroBar").style.width=Math.min(100,score/100*100)+"%";$("heroCaption").textContent=tests?`Пройдено тестов: ${tests}. Лучший результат: ${best}/${questions.length}.`:"Пройди тест, чтобы заработать первые баллы.";let badges=[["Первый шаг",tests>=1,"Пройди первый тест"],["Знаток",correct>=5,"Ответь правильно на 5 вопросов"],["Отличный результат",best>=5,"Набери 5 из 5 в одном тесте"]];$("badgeCount").textContent=badges.filter(b=>b[1]).length;$("achievements").innerHTML=badges.map(b=>`<div class="note"><h3>${b[1]?"🏅":"🔒"} ${b[0]}</h3><p class="muted">${b[1]?"Достижение открыто!":b[2]}</p></div>`).join("")}
+renderQuestion();updateProgress();
+</script>
+</body>
+</html>
